@@ -8,7 +8,9 @@ namespace TicTacToeTest
         public void GameBoard_ShouldBeInitializedCorrectly()
         {
             // Arrange
-            var game = new TicTacToeGame();
+            var playerX = new Player("Player X",'X');
+            var playerO = new Player("Player O",'O');
+            var game = new TicTacToeGame(playerX,playerO);
 
             // Act
             var board = game.GetBoard();
