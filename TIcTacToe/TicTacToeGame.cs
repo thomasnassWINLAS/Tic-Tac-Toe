@@ -46,5 +46,27 @@ namespace TicTacToe
             _currentPlayer = _currentPlayer == _playerX ? _playerO : _playerX;
             return true;
         }
+
+        public bool CheckWin()
+        {
+            // Check rows and columns
+            for (int i = 0; i < 3; i++)
+            {
+                if ((_board[i, 0] == _board[i, 1] && _board[i, 1] == _board[i, 2] && _board[i, 0] != ' ') ||
+                    (_board[0, i] == _board[1, i] && _board[1, i] == _board[2, i] && _board[0, i] != ' '))
+                {
+                    return true;
+                }
+            }
+
+            // Check diagonals
+            if ((_board[0, 0] == _board[1, 1] && _board[1, 1] == _board[2, 2] && _board[0, 0] != ' ') ||
+                (_board[0, 2] == _board[1, 1] && _board[1, 1] == _board[2, 0] && _board[0, 2] != ' '))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

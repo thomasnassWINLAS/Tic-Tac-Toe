@@ -75,5 +75,24 @@ namespace TicTacToeTest
             // Assert
             Assert.False(moveResult);
         }
+
+        [Fact]
+        public void Game_ShouldDetectWinCondition()
+        {
+            // Arrange
+            var playerX = new Player("Player X", 'X');
+            var playerO = new Player("Player O", 'O');
+            var game = new TicTacToeGame(playerX, playerO);
+
+            // Act
+            game.MakeMove(0, 0);
+            game.MakeMove(1, 0);
+            game.MakeMove(0, 1);
+            game.MakeMove(1, 1);
+            game.MakeMove(0, 2);
+
+            // Assert
+            Assert.True(game.CheckWin());
+        }
     }
 }
