@@ -12,7 +12,7 @@ namespace TicTacToe
         private readonly char[,] _board;
         private readonly Player _playerX;
         private readonly Player _playerO;
-        private Player _currentPlayer;
+        public Player CurrentPlayer;
 
         public TicTacToeGame(Player playerX, Player playerO)
         {
@@ -26,7 +26,7 @@ namespace TicTacToe
             }
             _playerX = playerX;
             _playerO = playerO;
-            _currentPlayer = playerX;
+            CurrentPlayer = playerX;
         }
 
 
@@ -42,8 +42,8 @@ namespace TicTacToe
                 return false;
             }
 
-            _board[row, col] = _currentPlayer.Symbol;
-            _currentPlayer = _currentPlayer == _playerX ? _playerO : _playerX;
+            _board[row, col] = CurrentPlayer.Symbol;
+            CurrentPlayer = CurrentPlayer == _playerX ? _playerO : _playerX;
             return true;
         }
 
@@ -54,6 +54,7 @@ namespace TicTacToe
                 if ((_board[i, 0] == _board[i, 1] && _board[i, 1] == _board[i, 2] && _board[i, 0] != ' ') ||
                     (_board[0, i] == _board[1, i] && _board[1, i] == _board[2, i] && _board[0, i] != ' '))
                 {
+                    CurrentPlayer = CurrentPlayer == _playerX ? _playerO : _playerX;
                     return true;
                 }
             }
@@ -61,6 +62,7 @@ namespace TicTacToe
             if ((_board[0, 0] == _board[1, 1] && _board[1, 1] == _board[2, 2] && _board[0, 0] != ' ') ||
                 (_board[0, 2] == _board[1, 1] && _board[1, 1] == _board[2, 0] && _board[0, 2] != ' '))
             {
+                CurrentPlayer = CurrentPlayer == _playerX ? _playerO : _playerX;
                 return true;
             }
 
@@ -77,6 +79,21 @@ namespace TicTacToe
                 }
             }
             return !CheckWin();
+        }
+
+        public void PrintBoard()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    Console.Write(_board[i, j]);
+                    if (j < 2) Console.Write("|");
+                }
+                Console.WriteLine();
+                if (i < 2) Console.WriteLine("-----");
+            }
+            Console.WriteLine();
         }
     }
 }

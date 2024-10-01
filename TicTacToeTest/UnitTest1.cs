@@ -93,6 +93,7 @@ namespace TicTacToeTest
 
             // Assert
             Assert.True(game.CheckWin());
+            Assert.Equal(playerX, game.CurrentPlayer);
         }
 
 
@@ -113,6 +114,7 @@ namespace TicTacToeTest
 
             // Assert
             Assert.True(game.CheckWin());
+            Assert.Equal(playerX, game.CurrentPlayer);
         }
 
         [Fact]
@@ -132,6 +134,7 @@ namespace TicTacToeTest
 
             // Assert
             Assert.True(game.CheckWin());
+            Assert.Equal(playerX, game.CurrentPlayer);
         }
 
         [Fact]
