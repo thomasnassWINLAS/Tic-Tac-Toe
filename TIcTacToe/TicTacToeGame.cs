@@ -49,7 +49,6 @@ namespace TicTacToe
 
         public bool CheckWin()
         {
-            // Check rows and columns
             for (int i = 0; i < 3; i++)
             {
                 if ((_board[i, 0] == _board[i, 1] && _board[i, 1] == _board[i, 2] && _board[i, 0] != ' ') ||
@@ -59,7 +58,6 @@ namespace TicTacToe
                 }
             }
 
-            // Check diagonals
             if ((_board[0, 0] == _board[1, 1] && _board[1, 1] == _board[2, 2] && _board[0, 0] != ' ') ||
                 (_board[0, 2] == _board[1, 1] && _board[1, 1] == _board[2, 0] && _board[0, 2] != ' '))
             {

@@ -77,7 +77,7 @@ namespace TicTacToeTest
         }
 
         [Fact]
-        public void Game_ShouldDetectWinCondition()
+        public void Game_ShouldDetectWinConditionInARow()
         {
             // Arrange
             var playerX = new Player("Player X", 'X');
@@ -93,6 +93,96 @@ namespace TicTacToeTest
 
             // Assert
             Assert.True(game.CheckWin());
+        }
+
+
+        [Fact]
+        public void Game_ShouldDetectWinConditionInAColumn()
+        {
+            // Arrange
+            var playerX = new Player("Player X", 'X');
+            var playerO = new Player("Player O", 'O');
+            var game = new TicTacToeGame(playerX, playerO);
+
+            // Act
+            game.MakeMove(0, 0);
+            game.MakeMove(0, 1);
+            game.MakeMove(1, 0);
+            game.MakeMove(1, 1);
+            game.MakeMove(2, 0);
+
+            // Assert
+            Assert.True(game.CheckWin());
+        }
+
+        [Fact]
+        public void Game_ShouldDetectWinConditionInADiagonal()
+        {
+            // Arrange
+            var playerX = new Player("Player X", 'X');
+            var playerO = new Player("Player O", 'O');
+            var game = new TicTacToeGame(playerX, playerO);
+
+            // Act
+            game.MakeMove(0, 0);
+            game.MakeMove(0, 1);
+            game.MakeMove(1, 1);
+            game.MakeMove(1, 0);
+            game.MakeMove(2, 2);
+
+            // Assert
+            Assert.True(game.CheckWin());
+        }
+
+        [Fact]
+        public void ThreeInARowOffDifferentSymbols_ShouldNotBeAWinCondition()
+        {
+            // Arrange
+            var playerX = new Player("Player X", 'X');
+            var playerO = new Player("Player O", 'O');
+            var game = new TicTacToeGame(playerX, playerO);
+
+            // Act
+            game.MakeMove(0, 0);
+            game.MakeMove(0, 1);
+            game.MakeMove(0, 2);
+
+            // Assert
+            Assert.False(game.CheckWin());
+        }
+
+        [Fact]
+        public void ThreeInAColumnOffDifferentSymbols_ShouldNotBeAWinCondition()
+        {
+            // Arrange
+            var playerX = new Player("Player X", 'X');
+            var playerO = new Player("Player O", 'O');
+            var game = new TicTacToeGame(playerX, playerO);
+
+            // Act
+            game.MakeMove(0, 0);
+            game.MakeMove(1, 0);
+            game.MakeMove(2, 0);
+
+            // Assert
+            Assert.False(game.CheckWin());
+        }
+
+        [Fact]
+        public void ThreeInADiagonalOffDifferentSymbols_ShouldNotBeAWinCondition()
+        {
+            // Arrange
+            var playerX = new Player("Player X", 'X');
+            var playerO = new Player("Player O", 'O');
+            var game = new TicTacToeGame(playerX, playerO);
+
+            // Act
+            game.MakeMove(0, 0);
+            game.MakeMove(1, 1);
+            game.MakeMove(2, 2);
+
+            // Assert
+            Assert.False(game.CheckWin());
         }
     }
 }
