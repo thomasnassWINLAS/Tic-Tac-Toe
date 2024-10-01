@@ -66,5 +66,17 @@ namespace TicTacToe
 
             return false;
         }
+
+        public bool CheckDraw()
+        {
+            foreach (var cell in _board)
+            {
+                if (cell == ' ')
+                {
+                    return false;
+                }
+            }
+            return !CheckWin();
+        }
     }
 }
