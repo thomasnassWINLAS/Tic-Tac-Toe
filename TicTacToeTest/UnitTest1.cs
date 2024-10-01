@@ -23,5 +23,57 @@ namespace TicTacToeTest
                 Assert.Equal(' ', cell);
             }
         }
+
+        [Fact]
+        public void Player_ShouldBeAbleToMakeMove()
+        {
+            // Arrange
+            var playerX = new Player("Player X", 'X');
+            var playerO = new Player("Player O", 'O');
+            var game = new TicTacToeGame(playerX, playerO);
+
+            // Act
+            var moveResult = game.MakeMove(0, 0);
+            var board = game.GetBoard();
+
+            // Assert
+            Assert.True(moveResult);
+            Assert.Equal('X', board[0, 0]);
+        }
+
+        [Theory]
+        [InlineData(-1, 0)]
+        [InlineData(4, 0)]
+        [InlineData(0, -1)]
+        [InlineData(0, 4)]
+        public void Game_ShouldNotAllowMoveOutsideBoardBoundaries(int row,int col)
+        {
+            // Arrange
+            var playerX = new Player("Player X", 'X');
+            var playerO = new Player("Player O", 'O');
+            var game = new TicTacToeGame(playerX, playerO);
+
+            // Act
+            var moveResult = game.MakeMove(row, col);
+
+            // Assert
+            Assert.False(moveResult);
+        }
+
+        [Fact]
+        public void Game_ShouldNotAllowMoveInAlreadyOccupiedCell()
+        {
+            // Arrange
+            var playerX = new Player("Player X", 'X');
+            var playerO = new Player("Player O", 'O');
+            var game = new TicTacToeGame(playerX, playerO);
+
+            // Act
+            game.MakeMove(0, 0);
+            var moveResult = game.MakeMove(0, 0);
+
+            // Assert
+            Assert.False(moveResult);
+        }
     }
 }

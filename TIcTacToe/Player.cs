@@ -2,8 +2,8 @@
 
 public class Player
 {
-    public string Name { get; set; }
-    char Symbol { get; set; }
+    public string Name { get;}
+    public char Symbol { get;}
 
     public Player(string name, char symbol)
     {

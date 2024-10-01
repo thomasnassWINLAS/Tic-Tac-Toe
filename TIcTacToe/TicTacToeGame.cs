@@ -9,9 +9,10 @@ namespace TicTacToe
 {
     public class TicTacToeGame
     {
-        private char[,] _board;
-        private Player _playerX;
-        private Player _playerO;
+        private readonly char[,] _board;
+        private readonly Player _playerX;
+        private readonly Player _playerO;
+        private Player _currentPlayer;
 
         public TicTacToeGame(Player playerX, Player playerO)
         {
@@ -25,12 +26,25 @@ namespace TicTacToe
             }
             _playerX = playerX;
             _playerO = playerO;
+            _currentPlayer = playerX;
         }
 
 
         public char[,] GetBoard()
         {
             return _board;
+        }
+
+        public bool MakeMove(int row, int col)
+        {
+            if (row < 0 || row >= 3 || col < 0 || col >= 3 || _board[row, col] != ' ')
+            {
+                return false;
+            }
+
+            _board[row, col] = _currentPlayer.Symbol;
+            _currentPlayer = _currentPlayer == _playerX ? _playerO : _playerX;
+            return true;
         }
     }
 }
